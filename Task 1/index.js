@@ -1,18 +1,11 @@
 const express = require('express');
-const { fetchNumbers, calculateAverage } = require('./src/utils/util');
-const port = 9876;
-const config = {
-  TIMEOUT: 1000,
-  WINDOW_SIZE: 10,
-};
+const numbersRouter = require('./src/routes/numbers');
 
 const app = express();
+const PORT = 9876;
 
-const numbers = new Set();
+app.use('/numbers', numbersRouter);
 
-
-app.use("/", require("./src/routes/numbers"));
-
-app.listen(port, () => {
-  console.log(`Server is running at port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
